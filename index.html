@@ -668,6 +668,9 @@
     background: var(--white);
   }
   .field textarea{ resize: vertical; min-height: 110px; }
+  .field-datetime{ display:flex; gap: 10px; }
+  .field-datetime input[type="date"]{ flex: 1.4; }
+  .field-datetime input[type="time"]{ flex: 1; }
   .form-submit{ width: 100%; margin-top: 6px; }
   .form-note{
     font-size: 12.5px;
@@ -1149,12 +1152,18 @@
         </div>
         <div class="form-row">
           <div class="field">
-            <label for="fechaInicio">Fecha de inicio del arriendo</label>
-            <input type="date" id="fechaInicio" name="fechaInicio">
+            <label for="fechaInicio">Fecha y hora de inicio del arriendo</label>
+            <div class="field-datetime">
+              <input type="date" id="fechaInicio" name="fechaInicio">
+              <input type="time" id="horaInicio" name="horaInicio">
+            </div>
           </div>
           <div class="field">
-            <label for="fechaTermino">Fecha de término del arriendo</label>
-            <input type="date" id="fechaTermino" name="fechaTermino">
+            <label for="fechaTermino">Fecha y hora de término del arriendo</label>
+            <div class="field-datetime">
+              <input type="date" id="fechaTermino" name="fechaTermino">
+              <input type="time" id="horaTermino" name="horaTermino">
+            </div>
           </div>
         </div>
         <div class="field">
