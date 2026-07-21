@@ -11,7 +11,7 @@
   /* ============================================================
      DISOR SpA — Landing Page
      Sistema de diseño derivado del logo:
-     - Verde bosque oscuro (iden<tidad / textos fuertes)
+     - Verde bosque oscuro (identidad / textos fuertes)
      - Verde hoja vibrante (acento, CTA, energía)
      - Gris grafito (tipografía del wordmark "DISOR")
      - Fondo blanco / verde muy pálido (limpieza, aire)
@@ -539,6 +539,10 @@
     align-items:flex-start;
     gap: 22px;
     padding: 30px 32px 34px;
+    min-width: 0;
+  }
+  .featured-body > div:last-child{
+    min-width: 0;
   }
   .service-card.featured .icon-badge{
     width: 68px; height: 68px;
@@ -669,8 +673,8 @@
   }
   .field textarea{ resize: vertical; min-height: 110px; }
   .field-datetime{ display:flex; gap: 10px; }
-  .field-datetime input[type="date"]{ flex: 1.4; }
-  .field-datetime input[type="time"]{ flex: 1; }
+  .field-datetime input[type="date"]{ flex: 1.4; min-width: 0; }
+  .field-datetime input[type="time"]{ flex: 1; min-width: 0; }
   .form-submit{ width: 100%; margin-top: 6px; }
   .form-note{
     font-size: 12.5px;
@@ -816,6 +820,8 @@
     .featured-row{ grid-column: span 1; grid-template-columns: 1fr; }
     .service-card.featured.split{ grid-template-columns: 1fr; }
     .service-card.featured.split .featured-img{ height: 220px; min-height: 0; }
+    .featured-body{ flex-direction: column; padding: 24px 22px 28px; gap: 14px; }
+    .field-datetime{ flex-direction: column; }
     .why-grid{ grid-template-columns: 1fr 1fr; gap: 26px; }
     .footer-grid{ grid-template-columns: 1fr; }
     .footer-grid > div:first-child{ grid-column: span 1; }
