@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -1134,7 +1134,7 @@
         <div class="form-row">
           <div class="field">
             <label for="email">Correo electrónico</label>
-            <input type="email" id="email" name="email" placeholder="usted@empresa.cl" required>
+            <input type="email" id="email" name="email" placeholder="usted@empresa.cl" pattern="[^\s@]+@[^\s@]+\.[a-zA-Z]{2,}" title="Ingresa un correo válido, ej: usted@empresa.cl" required>
           </div>
           <div class="field">
             <label for="telefono">Teléfono</label>
@@ -1319,6 +1319,27 @@
 
   const contactForm = document.getElementById('contactForm');
   const formSuccess = document.getElementById('formSuccess');
+
+  // Validación extra del correo: bloquea dominios de ejemplo y typos comunes
+  const emailInput = document.getElementById('email');
+  const BLOCKED_EMAIL_DOMAINS = [
+    'test.com', 'example.com', 'ejemplo.com', 'correo.com', 'email.com', 'mail.com', 'dominio.com',
+    'gmial.com', 'gmai.com', 'gnail.com', 'gamil.com', 'gmail.co', 'gmailc.om', 'gmal.com',
+    'hotmial.com', 'hotmal.com', 'hotnail.com', 'hotmai.com', 'hotmil.com',
+    'yaho.com', 'yahho.com', 'yahoo.co', 'yhoo.com',
+    'outlok.com', 'outloo.com', 'outlock.com', 'outlok.cl'
+  ];
+  const checkEmailDomain = () => {
+    const value = emailInput.value.trim().toLowerCase();
+    const domain = value.split('@')[1];
+    if (domain && BLOCKED_EMAIL_DOMAINS.includes(domain)) {
+      emailInput.setCustomValidity('Revisa tu correo: el dominio "' + domain + '" no parece válido (¿error de tipeo?).');
+    } else {
+      emailInput.setCustomValidity('');
+    }
+  };
+  emailInput.addEventListener('input', checkEmailDomain);
+  emailInput.addEventListener('blur', checkEmailDomain);
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
