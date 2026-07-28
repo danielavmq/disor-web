@@ -622,11 +622,64 @@
     content: "";
     position: absolute;
     inset: 0;
+    z-index: 0;
     background: rgba(20,48,31,0);
     transition: background .3s ease;
     pointer-events: none;
   }
-  .gallery-item:hover::after{ background: rgba(20,48,31,.28); }
+  .gallery-item:hover::after{ background: rgba(20,48,31,.18); }
+  .gallery-caption{
+    position: absolute;
+    inset: auto 0 0 0;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: center;
+    padding: 34px 14px 16px;
+    margin: 0;
+    background: linear-gradient(to top, rgba(20,48,31,.98) 0%, rgba(20,48,31,.98) 38%, rgba(20,48,31,.55) 70%, transparent 100%);
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+    line-height: 1.4;
+    pointer-events: none;
+  }
+  .gallery-caption::before{
+    content: "";
+    width: 20px;
+    height: 1.5px;
+    background: var(--leaf-light);
+    margin-bottom: 8px;
+  }
+  .gallery-item.s1 .gallery-caption,
+  .gallery-item.s2 .gallery-caption,
+  .gallery-item.s3 .gallery-caption,
+  .gallery-item.s4 .gallery-caption,
+  .gallery-item.s5 .gallery-caption,
+  .gallery-item.s6 .gallery-caption,
+  .gallery-item.s7 .gallery-caption,
+  .gallery-item.s8 .gallery-caption{
+    padding: 22px 8px 10px;
+    font-size: 11.5px;
+    letter-spacing: .03em;
+    line-height: 1.3;
+  }
+  .gallery-item.s1 .gallery-caption::before,
+  .gallery-item.s2 .gallery-caption::before,
+  .gallery-item.s3 .gallery-caption::before,
+  .gallery-item.s4 .gallery-caption::before,
+  .gallery-item.s5 .gallery-caption::before,
+  .gallery-item.s6 .gallery-caption::before,
+  .gallery-item.s7 .gallery-caption::before,
+  .gallery-item.s8 .gallery-caption::before{
+    width: 14px;
+    margin-bottom: 5px;
+  }
   .gallery-item.feature{ grid-area: feature; }
   .gallery-item.v1{ grid-area: v1; }
   .gallery-item.v2{ grid-area: v2; }
@@ -665,9 +718,17 @@
     transition: opacity .3s ease;
   }
   .lightbox-overlay.open{ display: flex; opacity: 1; }
-  .lightbox-overlay img{
+  .lightbox-media{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
     max-width: 88vw;
     max-height: 84vh;
+  }
+  .lightbox-overlay img{
+    max-width: 88vw;
+    max-height: 78vh;
     object-fit: contain;
     border-radius: 10px;
     box-shadow: 0 30px 70px -20px rgba(0,0,0,.6);
@@ -675,6 +736,27 @@
     transition: transform .3s var(--ease);
   }
   .lightbox-overlay.open img{ transform: scale(1); }
+  .lightbox-caption{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    max-width: 60ch;
+    text-align: center;
+    color: var(--white);
+    font-family: var(--mono);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: .07em;
+    text-transform: uppercase;
+  }
+  .lightbox-caption::before{
+    content: "";
+    width: 26px;
+    height: 1.5px;
+    background: var(--leaf-light);
+    margin-bottom: 10px;
+  }
   .lightbox-close, .lightbox-nav{
     position: absolute;
     display: flex;
@@ -1297,45 +1379,58 @@
       <p>Una muestra de instalaciones, mantenciones y despliegues de equipos realizados por DISOR en distintas faenas de la región.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item feature reveal">
+      <figure class="gallery-item feature reveal">
         <img src="generador_mejorado.jpeg" alt="Generador industrial Lureye despachado por DISOR en camión Foton">
-      </div>
-      <div class="gallery-item h1 reveal reveal-delay-1">
+        <figcaption class="gallery-caption">Arriendo e instalación de generadores de respaldo</figcaption>
+      </figure>
+      <figure class="gallery-item h1 reveal reveal-delay-1">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.25.jpeg" alt="Controladores Fancom instalados y cableados en faena">
-      </div>
-      <div class="gallery-item s1 reveal reveal-delay-1">
+        <figcaption class="gallery-caption">Reparaciones eléctricas en instalaciones y tableros eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s1 reveal reveal-delay-1">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.26.jpeg" alt="Técnico revisando generador industrial en faena">
-      </div>
-      <div class="gallery-item v2 reveal reveal-delay-2">
+        <figcaption class="gallery-caption">Reparaciones eléctricas en instalaciones y tableros eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item v2 reveal reveal-delay-2">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.27%20(1).jpeg" alt="Instalación de poste eléctrico con miniexcavadora">
-      </div>
-      <div class="gallery-item v1 reveal reveal-delay-3">
+        <figcaption class="gallery-caption">Obras nuevas y ampliaciones de instalaciones eléctricas</figcaption>
+      </figure>
+      <figure class="gallery-item v1 reveal reveal-delay-3">
         <img src="Imagen2.jpg" alt="Técnico de DISOR realizando mantención en línea eléctrica en altura">
-      </div>
-      <div class="gallery-item h2 reveal">
+        <figcaption class="gallery-caption">Armado de líneas eléctricas de baja y media tensión</figcaption>
+      </figure>
+      <figure class="gallery-item h2 reveal">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.27.jpeg" alt="Camión grúa trasladando postes eléctricos">
-      </div>
-      <div class="gallery-item s2 reveal reveal-delay-1">
+        <figcaption class="gallery-caption">Mantención y reparación de motores eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s2 reveal reveal-delay-1">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.27%20(2).jpeg" alt="Equipo técnico de DISOR instalando poste eléctrico en terreno">
-      </div>
-      <div class="gallery-item s5 reveal reveal-delay-2">
+        <figcaption class="gallery-caption">Proyectos de ingeniería eléctrica</figcaption>
+      </figure>
+      <figure class="gallery-item s5 reveal reveal-delay-2">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.28.jpeg" alt="Detalle de tablero eléctrico intervenido por DISOR">
-      </div>
-      <div class="gallery-item s3 reveal reveal-delay-3">
+        <figcaption class="gallery-caption">Reparaciones eléctricas en instalaciones y tableros eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s3 reveal reveal-delay-3">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.31.jpeg" alt="Tablero eléctrico industrial con conexiones de control">
-      </div>
-      <div class="gallery-item s6 reveal">
+        <figcaption class="gallery-caption">Instalación y reparación de tableros de pozos</figcaption>
+      </figure>
+      <figure class="gallery-item s6 reveal">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.30.jpeg" alt="Breakers y conexiones dentro de tablero eléctrico industrial">
-      </div>
-      <div class="gallery-item s7 reveal reveal-delay-1">
+        <figcaption class="gallery-caption">Reparaciones eléctricas en instalaciones y tableros eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s7 reveal reveal-delay-1">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.31%20(1).jpeg" alt="Panel de control industrial con indicadores de alarma">
-      </div>
-      <div class="gallery-item s8 reveal reveal-delay-2">
+        <figcaption class="gallery-caption">Reparaciones eléctricas en instalaciones y tableros eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s8 reveal reveal-delay-2">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.32.jpeg" alt="Gabinete de control industrial con variadores de frecuencia">
-      </div>
-      <div class="gallery-item s4 reveal reveal-delay-3">
+        <figcaption class="gallery-caption">Mantención y reparación de motores eléctricos</figcaption>
+      </figure>
+      <figure class="gallery-item s4 reveal reveal-delay-3">
         <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.32%20(1).jpeg" alt="Canalización eléctrica instalada en obra">
-      </div>
+        <figcaption class="gallery-caption">Obras nuevas y ampliaciones de instalaciones eléctricas</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -1344,7 +1439,10 @@
 <div class="lightbox-overlay" id="lightboxOverlay">
   <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">&times;</button>
   <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Foto anterior">&#8249;</button>
-  <img id="lightboxImg" src="" alt="">
+  <div class="lightbox-media">
+    <img id="lightboxImg" src="" alt="">
+    <p class="lightbox-caption" id="lightboxCaption"></p>
+  </div>
   <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Foto siguiente">&#8250;</button>
 </div>
 
@@ -1645,6 +1743,7 @@
   const lightboxClose = document.getElementById('lightboxClose');
   const lightboxPrev = document.getElementById('lightboxPrev');
   const lightboxNext = document.getElementById('lightboxNext');
+  const lightboxCaption = document.getElementById('lightboxCaption');
   let currentImageIndex = 0;
 
   const showImage = (index) => {
@@ -1652,6 +1751,8 @@
     const target = galleryImages[currentImageIndex];
     lightboxImg.src = target.src;
     lightboxImg.alt = target.alt;
+    const captionEl = target.closest('.gallery-item').querySelector('.gallery-caption');
+    lightboxCaption.textContent = captionEl ? captionEl.textContent : '';
   };
   const openLightbox = (index) => {
     showImage(index);
