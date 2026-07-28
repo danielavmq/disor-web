@@ -606,7 +606,7 @@
       "feature feature manut  manut"
       "obras   obras   obras  arm"
       "repar   repar   repar  pozos"
-      "repar   repar   repar  proy";
+      "repar   repar   repar  pozos";
     gap: 14px;
   }
   .gallery-item{
@@ -683,7 +683,6 @@
   .gallery-frame.repar{ grid-area: repar; }
   .gallery-frame.arm{ grid-area: arm; }
   .gallery-frame.pozos{ grid-area: pozos; }
-  .gallery-frame.proy{ grid-area: proy; }
   .gallery-frame-label{
     position: absolute;
     top: 8px;
@@ -713,7 +712,7 @@
     grid-template-columns: 1fr 1fr;
   }
   .gallery-frame.obras .gallery-frame-grid{
-    grid-template-columns: 3fr 2fr;
+    grid-template-columns: repeat(3, 1fr);
   }
   .gallery-frame.repar .gallery-frame-grid{
     grid-template-columns: repeat(3, 1fr);
@@ -1437,6 +1436,10 @@
             <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.32%20(1).jpeg" alt="Canalización eléctrica instalada en obra" data-caption="Obras nuevas y ampliaciones de instalaciones eléctricas">
             <figcaption class="gallery-item-caption">Obras nuevas y ampliaciones de instalaciones eléctricas</figcaption>
           </figure>
+          <figure class="gallery-item">
+            <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.27%20(2).jpeg" alt="Equipo técnico de DISOR instalando poste eléctrico en terreno" data-caption="Obras nuevas y ampliaciones de instalaciones eléctricas">
+            <figcaption class="gallery-item-caption">Obras nuevas y ampliaciones de instalaciones eléctricas</figcaption>
+          </figure>
         </div>
       </div>
 
@@ -1482,16 +1485,6 @@
           <figure class="gallery-item">
             <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.31.jpeg" alt="Tablero eléctrico industrial con conexiones de control" data-caption="Instalación y reparación de tableros de pozos">
             <figcaption class="gallery-item-caption">Instalación y reparación de tableros de pozos</figcaption>
-          </figure>
-        </div>
-      </div>
-
-      <div class="gallery-frame proy reveal reveal-delay-3">
-        <span class="gallery-frame-label">Proyectos de ingeniería</span>
-        <div class="gallery-frame-grid">
-          <figure class="gallery-item">
-            <img src="WhatsApp%20Image%202026-07-27%20at%2020.02.27%20(2).jpeg" alt="Equipo técnico de DISOR instalando poste eléctrico en terreno" data-caption="Proyectos de ingeniería eléctrica">
-            <figcaption class="gallery-item-caption">Proyectos de ingeniería eléctrica</figcaption>
           </figure>
         </div>
       </div>
