@@ -1098,7 +1098,7 @@
   }
   .form-success.show span{ opacity: 1; transform: translateY(0); }
 
-  .contact-side{ display:flex; flex-direction:column; gap: 18px; }
+  .contact-side{ display:flex; flex-direction:column; gap: 18px; min-width: 0; }
   .contact-card{
     background: var(--forest);
     color: var(--white);
@@ -1112,7 +1112,9 @@
     align-items:flex-start;
     padding: 14px 0;
     border-bottom: 1px solid rgba(255,255,255,.1);
+    min-width: 0;
   }
+  .contact-item > div:not(.icon-badge){ min-width: 0; }
   .contact-item:last-child{ border-bottom:none; }
   .contact-item .icon-badge{
     background: rgba(255,255,255,.1);
@@ -1127,7 +1129,7 @@
     color: rgba(255,255,255,.55);
     margin-bottom: 3px;
   }
-  .contact-item .ci-value{ font-size: 15px; font-weight: 500; }
+  .contact-item .ci-value{ font-size: 15px; font-weight: 500; overflow-wrap: break-word; word-break: break-word; }
   .contact-item .ci-value + .ci-value{ margin-top: 4px; }
 
   .hours-card{
@@ -1174,6 +1176,8 @@
     color: rgba(255,255,255,.75);
     margin-bottom: 12px;
     transition: color .25s ease;
+    overflow-wrap: break-word;
+    word-break: break-word;
   }
   .footer-col a:hover{ color: var(--leaf-light); }
   .footer-bottom{
