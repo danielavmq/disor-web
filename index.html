@@ -54,7 +54,7 @@
   }
 
   *{ margin:0; padding:0; box-sizing:border-box; }
-  html{ scroll-behavior:smooth; }
+  html{ scroll-behavior:smooth; overflow-x: hidden; }
   body{
     font-family: var(--body);
     color: var(--gray-600);
@@ -1008,9 +1008,9 @@
     background: var(--white);
   }
   .field textarea{ resize: vertical; min-height: 110px; }
-  .field-datetime{ display:flex; gap: 10px; }
-  .field-datetime input[type="date"]{ flex: 1.4; }
-  .field-datetime input[type="time"]{ flex: 1; }
+  .field-datetime{ display:flex; gap: 10px; min-width: 0; }
+  .field-datetime input[type="date"]{ flex: 1.4; min-width: 0; }
+  .field-datetime input[type="time"]{ flex: 1; min-width: 0; }
   .form-submit{ width: 100%; margin-top: 6px; }
   .form-note{
     font-size: 12.5px;
@@ -1235,11 +1235,59 @@
     .services-grid{ grid-template-columns: 1fr; }
     .featured-row{ grid-column: span 1; grid-template-columns: 1fr; }
     .specialties-block{ grid-column: span 1; }
-    .gallery-grid{ grid-template-columns: repeat(2, 1fr); grid-auto-rows: 150px; }
-    .gallery-frame{ grid-area: auto; grid-column: span 2; }
-    .gallery-frame.repar{ grid-row: span 2; }
+    .gallery-grid{
+      aspect-ratio: auto;
+      grid-template-columns: 1fr;
+      grid-template-rows: none;
+      grid-template-areas: none;
+      grid-auto-rows: auto;
+      grid-auto-flow: row;
+      gap: 16px;
+    }
+    .gallery-frame{
+      grid-area: auto;
+      grid-column: auto;
+      grid-row: auto;
+      width: 100%;
+    }
+    .gallery-frame.feature,
+    .gallery-frame.manut,
+    .gallery-frame.obras,
+    .gallery-frame.repar,
+    .gallery-frame.arm,
+    .gallery-frame.pozos{
+      grid-area: auto;
+      grid-column: auto;
+      grid-row: auto;
+    }
+    .gallery-frame.manut .gallery-frame-grid,
+    .gallery-frame.obras .gallery-frame-grid,
+    .gallery-frame.repar .gallery-frame-grid{
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: none;
+      grid-auto-flow: dense;
+    }
+    .gallery-frame.repar .gallery-frame-grid .gallery-item:first-child{
+      grid-row: auto;
+      grid-column: auto;
+    }
+    .gallery-frame.repar .gallery-frame-grid .gallery-item:last-child{
+      grid-column: span 2;
+    }
+    .gallery-item{
+      height: auto;
+      min-height: 160px;
+    }
+    .gallery-frame-label{
+      font-size: 11px;
+      padding: 5px 10px;
+      line-height: 1.3;
+      white-space: normal;
+      max-width: calc(100% - 16px);
+    }
     .service-card.featured.split{ grid-template-columns: 1fr; }
     .service-card.featured.split .featured-img{ height: 220px; min-height: 0; }
+    .service-card.featured .featured-body p{ text-align: left; }
     .why-grid{ grid-template-columns: 1fr 1fr; gap: 26px; }
     .specialties-grid{ grid-template-columns: 1fr; }
     .specialties-block{ padding: 1.5rem; }
