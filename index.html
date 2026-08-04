@@ -471,6 +471,30 @@
     transition: transform .6s var(--ease);
   }
   .team-photo:hover img{ transform: scale(1.035); }
+  .team-photo-placeholder{
+    display: none;
+    width: 100%;
+    height: clamp(280px, 38vw, 440px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    background: linear-gradient(135deg, var(--leaf-pale) 0%, var(--leaf-pale) 55%, rgba(58,166,55,.15) 100%);
+  }
+  .team-photo-placeholder svg{ width: 44px; height: 44px; color: var(--forest); opacity: .55; }
+  .team-photo-placeholder span{
+    font-family: var(--mono);
+    font-size: 12.5px;
+    font-weight: 600;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--forest);
+    opacity: .7;
+  }
+  .team-photo--placeholder::after,
+  .team-photo--placeholder .team-photo-badge,
+  .team-photo--placeholder .team-photo-caption{ display: none; }
+  .team-photo--placeholder .team-photo-placeholder{ display: flex; }
   .team-photo::after{
     content: "";
     position: absolute; inset: 0;
@@ -1469,7 +1493,15 @@
     </div>
 
     <div class="team-photo reveal">
-      <img src="GRUPO.jpg" alt="Equipo profesional y técnico de DISOR SpA en sus instalaciones" loading="lazy">
+      <img src="equipo-disor.jpg" alt="Equipo profesional y técnico de DISOR SpA en sus instalaciones" loading="lazy"
+           onerror="this.style.display='none'; this.closest('.team-photo').classList.add('team-photo--placeholder');">
+      <div class="team-photo-placeholder">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 8a2 2 0 0 1 2-2h1.5l1-1.5h7l1 1.5H18a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8Z"/>
+          <circle cx="12" cy="12.5" r="3.5"/>
+        </svg>
+        <span>Foto del equipo próximamente</span>
+      </div>
       <div class="team-photo-badge">5+ años de experiencia</div>
       <div class="team-photo-caption">
         <span class="tag">Nuestro equipo</span>
