@@ -1140,11 +1140,14 @@
   }
   .hours-card h4{ font-size: 15px; margin-bottom: 14px; }
   .hours-row{
-    display:flex; justify-content:space-between;
+    display:flex;
+    gap: 12px;
     font-size: 14px; padding: 7px 0;
     color: var(--gray-600);
   }
-  .hours-row strong{ color: var(--graphite); font-weight: 600; }
+  .hours-row > span{ flex: 0 1 150px; min-width: 60px; }
+  .hours-row strong{ color: var(--graphite); font-weight: 600; flex: 1; }
+  .hours-row .hours-time{ white-space: nowrap; flex: 0 0 auto; }
 
   /* ============================== FOOTER ============================== */
   footer{
@@ -1299,6 +1302,9 @@
     .footer-grid > div:first-child{ grid-column: span 1; }
     .form-row{ grid-template-columns: 1fr; }
     .contact-form{ padding: 26px; }
+    .hours-card{ padding: 22px 20px; }
+    .hours-row{ font-size: 12.5px; gap: 8px; }
+    .hours-row > span{ flex: 0 1 118px; min-width: 50px; }
     .commit-band{ grid-template-columns: 1fr; text-align:left; }
     .footer-bottom{ flex-direction: column; align-items:flex-start; }
     .section{ padding: 80px 0; }
@@ -1901,8 +1907,8 @@
 
         <div class="hours-card reveal reveal-delay-2">
           <h4>Horario de atención</h4>
-          <div class="hours-row"><span>Lunes y Martes</span><strong>08:00 – 18:00</strong></div>
-          <div class="hours-row"><span>Miercoles a Viernes</span><strong>08:00 – 17:00</strong></div>
+          <div class="hours-row"><span>Lunes y Martes</span><strong class="hours-time">08:00 – 18:00</strong></div>
+          <div class="hours-row"><span>Miercoles a Viernes</span><strong class="hours-time">08:00 – 17:00</strong></div>
           <div class="hours-row"><span><strong>Emergencias</strong></span><strong>Disponibilidad 24 horas</strong></div>
         </div>
       </div>
