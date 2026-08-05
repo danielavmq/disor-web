@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self'; connect-src 'self' https://script.google.com https://challenges.cloudflare.com; frame-src https://challenges.cloudflare.com; base-uri 'self'; form-action 'self' https://script.google.com;">
 <title>DISOR SpA | Diseño e Ingeniería Sustentable</title>
 <meta name="description" content="DISOR SpA — Ingeniería sustentable en Rancagua, VI Región. Arriendo de generadores y maquinaria, mantención industrial, electricidad y proyectos de ingeniería. Personal certificado SEC. Atención 24/7.">
 <meta name="keywords" content="generadores en arriendo Rancagua, mantención eléctrica industrial, ingeniería sustentable Chile, DISOR SpA, certificación SEC, maquinaria industrial VI región">
@@ -1008,6 +1009,14 @@
   }
   .form-row{ display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
   .field{ margin-bottom: 20px; }
+  .field-honeypot{
+    position: absolute;
+    left: -9999px;
+    top: -9999px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
   .field label{
     display:block;
     font-size: 13px;
@@ -1378,6 +1387,7 @@
   ]
 }
 </script>
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
 </head>
 <body>
 
@@ -1850,6 +1860,10 @@
         </div>
 
         <div class="form-fields" id="formFields">
+        <div class="field field-honeypot" aria-hidden="true">
+          <label for="sitio_web">Deja este campo vacío</label>
+          <input type="text" id="sitio_web" name="sitio_web" tabindex="-1" autocomplete="off">
+        </div>
         <div class="form-row">
           <div class="field field-float">
             <input type="text" id="nombre" name="nombre" placeholder=" " required>
@@ -1898,6 +1912,9 @@
         <div class="field field-float">
           <textarea id="mensaje" name="mensaje" placeholder=" "></textarea>
           <label for="mensaje">Mensaje</label>
+        </div>
+        <div class="field">
+          <div class="cf-turnstile" data-sitekey="0x4AAAAAAEHVZofnN5tjgr9X" data-theme="light"></div>
         </div>
         <button type="submit" class="btn btn-primary form-submit">Enviar solicitud</button>
         </div>
@@ -2076,8 +2093,24 @@
 
   contactForm.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // Honeypot: si el campo trampa tiene contenido, es un bot — cancelar en silencio
+    const honeypot = document.getElementById('sitio_web');
+    if (honeypot && honeypot.value.trim() !== '') {
+      return;
+    }
+
     if (!contactForm.checkValidity()) {
       contactForm.reportValidity();
+      return;
+    }
+
+    // Turnstile: exigir token completado antes de enviar
+    const turnstileToken = typeof turnstile !== 'undefined'
+      ? turnstile.getResponse()
+      : (document.querySelector('[name="cf-turnstile-response"]')?.value || '');
+    if (!turnstileToken) {
+      alert('Por favor completa la verificación de seguridad antes de enviar.');
       return;
     }
 
